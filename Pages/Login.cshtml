@@ -1,0 +1,82 @@
+﻿@page
+@model Gaines_Opus_Institute_Current.Pages.LoginModel
+@{
+}
+@*
+    
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="user.username" class="control-label"></label>
+                <input asp-for="user.username" class="form-control" />
+                <span asp-validation-for="user.username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.password" class="control-label"></label>
+                <input asp-for="user.password" class="form-control" />
+                <span asp-validation-for="user.password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.instrument" class="control-label"></label>
+                <input asp-for="user.instrument" class="form-control" />
+                <span asp-validation-for="user.instrument" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+*@
+<div id="loginContainer">
+    <br>
+    <br>
+    <div id="cont">
+        <div id="welcomeContainer">
+            <form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" role="form">
+                <h2>We are happy to see you again!</h2>
+
+                <div style="height: 40px" ></div>
+                <label asp-for="user.username">Username</label>
+                <input asp-for="user.username"/>
+                <span asp-validation-for="user.username"></span>
+
+                <div style="height: 30px" ></div>
+                <label asp-for="user.password">Password</label>
+                <input type="password" asp-for="user.password"/>
+                <span asp-validation-for="user.password"></span>
+                
+                @*
+                <label asp-for="user.email" class="control-label">Email</label>
+                <input asp-for="user.email" class="form-control" />
+                <span asp-validation-for="user.email" class="text-danger"></span>
+
+                <label asp-for="user.instrument" class="control-label">Instrument</label>
+                <input asp-for="user.instrument" class="form-control" />
+                <span asp-validation-for="user.instrument" class="text-danger"></span>
+                *@
+
+                <div style="height: 40px" ></div>
+
+                <div id="info1Btn">
+                    <button type="submit" id="button">Sign In</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="cont2">
+            <div id="info2">
+                <div id="text">
+                    <h3>Don't have an account? Please Sign up!</h3>
+                </div>
+                <div id="info2Btn">
+                    <a id="signupBtn" asp-page="/register">Sign up</a> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

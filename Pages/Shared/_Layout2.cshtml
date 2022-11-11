@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/css/index2.css" asp-append-version="true">
+</head>
+<body>
+    <div id="page-container">
+        <header id="navbar">
+            <nav class="navbar-container container">
+
+                <a class="home-link">
+                    <div class="navbar-logo">
+                        <img src="~/css/images/GainesOpusInstitute4.png">
+                    </div>
+                </a>
+
+                <div id="navbar-menu" aria-labelledby="navbar-toggle">
+                    <ul class="navbar-links">
+                        <li class="navbar-item"><a class="navbar-link" asp-page="pricing">Pricing</a></li>
+                        <li class="navbar-item-"><a class="navbar-link" href="https://discord.gg/VaCYxyPZxr">Discord</a></li>
+                        <li class="navbar-item">
+                            <a class="navbar-link"> Hello @User.Identity?.Name!</a>
+                        </li>
+                        <li class="navbar-item">
+                            <form method="post" >
+                                <button type="submit" class="navbar-link" id="navbarButton" asp-page="~/logout" >Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
+                @*
+                <div id="navbar-menu" aria-labelledby="navbar-toggle">
+                <ul class="navbar-links">
+
+                <li class="navbar-item"><a class="navbar-link" asp-controller="Home" asp-action="Pricing">Pricing</a></li>
+                <li class="navbar-item"><a class="navbar-link" href="https://discord.gg/VaCYxyPZxr">Discord</a></li>
+                <li class="nav-item">
+                <form method="post" class="navbar-item" asp-controller="Account" asp-action="LogOff">
+                <button type="submit" class="navbar-link">Logout</button>
+                </form>
+                </li>
+                <li class="navbar-item">
+                <a class="navbar-link">Hello @UserManager.GetUserName(User)</a>
+                </li>
+                </ul>
+                </div>
+
+                *@
+
+            </nav>
+        </header>
+
+
+        <div>
+            @RenderBody()
+        </div>
+
+        @*Footer*@
+        <footer>
+            <div class="footer-content">
+                <p>copyright &copy;2022 <a href="#">Gaines Opus Institute</a> All rights reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
+
