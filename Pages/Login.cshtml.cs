@@ -46,26 +46,15 @@ namespace Gaines_Opus_Institute_Current.Pages
                
                 _logger.LogInformation("User logged in.");
 
-                    //Create the security context
-                    var claims = new List<Claim>() {
-                    new Claim(ClaimTypes.Name, "admin"),
-                    new Claim(ClaimTypes.Email, "admin@mywebsite.com"),
-                    new Claim("User", "Basic")
-                    };
 
-                    //var identity = new ClaimsIdentity(claims, "MyCookieAuth");
-                    //ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-
-
-                var IdUser = await _userManager.FindByNameAsync(user.username);
-                await _userManager.AddClaimsAsync(IdUser, claims);
-                var claimsPrincipal = await _signInManager.CreateUserPrincipalAsync(IdUser);
-                await _signInManager.RefreshSignInAsync(IdUser);
-
+                //Create the security context
+                var claims = new List<Claim>();
+                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
 
-                    return RedirectToPage("contact");
+                    return RedirectToPage("/PagesLoggedIn/index2");
                 }
                 else
                 {

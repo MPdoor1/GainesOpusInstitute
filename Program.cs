@@ -77,19 +77,18 @@ builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", opt
 //Authorization
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("BasicUser",
-            policy => policy.RequireClaim("User", "Basics"));
-
-    options.AddPolicy("BasicUser1", policy => policy.RequireAssertion(context => context.User.HasClaim(ClaimTypes.Name, "admin")));
+    options.AddPolicy("Student",
+            policy => policy.RequireClaim("User", "Student"));
+    options.AddPolicy("Teacher",
+            policy => policy.RequireClaim("User", "Teacher"));
+    options.AddPolicy("Manager",
+            policy => policy.RequireClaim("User", "Manager"));
 });
 
 //RazorPage Options
 builder.Services.AddRazorPages(options =>
 {
-    //options.Conventions.AuthorizePage("/Shared/_Layout2", "MustBelongToHRDepartment");
-    options.Conventions.AuthorizePage("/contact", "BasicUser");
-    //options.Conventions.AuthorizeFolder("/PagesLoggedIn", "MustBelongToHRDepartment");
-
+    options.Conventions.AuthorizePage("/Shared/_Layout2", "Student");
 });
 
 var app = builder.Build();

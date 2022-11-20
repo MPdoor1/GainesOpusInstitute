@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace Gaines_Opus_Institute_Current.Pages
 {
@@ -45,8 +46,20 @@ namespace Gaines_Opus_Institute_Current.Pages
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    //Create the security context
+                    var claims = new List<Claim>() {
+                    new Claim(ClaimTypes.Name, user.username),
+                    new Claim(ClaimTypes.Email, user.email),
+                    new Claim("User", "Student")
+                    };
+
+                   // var IdeUser = await _userManager.FindByNameAsync(user.username);
+                    await _userManager.AddClaimsAsync(IUser, claims);
+                    var claimsPrincipal = await _signInManager.CreateUserPrincipalAsync(IUser);
+                    await _signInManager.RefreshSignInAsync(IUser);
+
                     await _signInManager.SignInAsync(IUser, user.rememberMe);
-                    return RedirectToPage("success");
+                    return RedirectToPage("/PagesLoggedIn/index2");
                 }
                 foreach (var error in result.Errors)
                 {
