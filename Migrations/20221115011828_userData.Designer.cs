@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gaines_Opus_Institute_Current.Migrations
 {
     [DbContext(typeof(GOSContext))]
-    [Migration("20221109010706_userData")]
+    [Migration("20221115011828_userData")]
     partial class userData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

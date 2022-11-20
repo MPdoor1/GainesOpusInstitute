@@ -14,14 +14,16 @@ namespace Gaines_Opus_Institute_Current.Pages
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public LoginModel(SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _roleManager = roleManager;
         }
         
         [BindProperty]
@@ -37,29 +39,33 @@ namespace Gaines_Opus_Institute_Current.Pages
         {
 
 
-
-
             var result = await _signInManager.PasswordSignInAsync(user.username,
                            user.password, user.rememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-
+               
                 _logger.LogInformation("User logged in.");
 
                     //Create the security context
-                    var claims = new List<Claim> {
+                    var claims = new List<Claim>() {
                     new Claim(ClaimTypes.Name, "admin"),
                     new Claim(ClaimTypes.Email, "admin@mywebsite.com"),
-                    new Claim("Department", "HR"),
-                    new Claim("Admin", "true"),
-                    new Claim("Teacher", "false")
-                };
-                    var identity = new ClaimsIdentity(claims, "MyCookieAuth");
-                    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+                    new Claim("User", "Basic")
+                    };
 
-                    await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+                    //var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                    //ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
-                    return RedirectToPage("PagesLoggedIn/index2");
+
+                var IdUser = await _userManager.FindByNameAsync(user.username);
+                await _userManager.AddClaimsAsync(IdUser, claims);
+                var claimsPrincipal = await _signInManager.CreateUserPrincipalAsync(IdUser);
+                await _signInManager.RefreshSignInAsync(IdUser);
+
+
+                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+
+                    return RedirectToPage("contact");
                 }
                 else
                 {

@@ -45,8 +45,8 @@ namespace Gaines_Opus_Institute_Current.Pages
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    await _signInManager.SignInAsync(IUser, isPersistent: false);
-                    return RedirectToPage("PagesLoggedIn/index2");
+                    await _signInManager.SignInAsync(IUser, user.rememberMe);
+                    return RedirectToPage("success");
                 }
                 foreach (var error in result.Errors)
                 {

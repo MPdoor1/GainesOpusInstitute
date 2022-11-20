@@ -1,21 +1,37 @@
 using Gaines_Opus_Institute_Current.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Stripe;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
-
 
 //Database for User
 builder.Services.AddDbContext<GOSContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("GOSContext") ?? throw new InvalidOperationException("Connection string 'GOSContext' not found.")));
 
+//Registering the Identity Services for User
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(
+        options => {
+            options.SignIn.RequireConfirmedAccount = false;
+
+            //Other options go here
+        }
+        )
+    .AddEntityFrameworkStores<GOSContext>();
+
+builder.Services.AddRazorPages();
+
 //Stripe apiKey
 StripeConfiguration.ApiKey = "sk_test_51KzqK9Hj2B2Quz911XrP11cB4Jb2ESrDCelSpRIZBqa18TWO9bGKlyuWsmiNeGYEHw4224xx5ghUWDaTQOukRjcf00rHXcZGYU";
 
+//Setting options for Password, Lockout, and User
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings.
@@ -35,34 +51,45 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.User.AllowedUserNameCharacters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+*#!";
     options.User.RequireUniqueEmail = true;
-    
+
 });
 
+//Settings for Cookies
 builder.Services.ConfigureApplicationCookie(options =>
 {
     // Cookie settings
     options.Cookie.HttpOnly = true;
     options.ExpireTimeSpan = TimeSpan.FromDays(30);
     options.LoginPath = "/Login";
-    options.AccessDeniedPath = "/index";
+    options.AccessDeniedPath = "/AccessDenied";
+    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
     options.SlidingExpiration = true;
 });
 
-//Registering the Identity Services for User
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(
-        options => {
-            options.SignIn.RequireConfirmedAccount = false;
-
-            //Other options go here
-        }
-        )
-    .AddEntityFrameworkStores<GOSContext>();
-
+//Authentication
 builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
 {
     options.Cookie.Name = "MyCookieAuth";
     options.LoginPath = "/Login";
     options.AccessDeniedPath = "/AccessDenied";
+});
+
+//Authorization
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("BasicUser",
+            policy => policy.RequireClaim("User", "Basics"));
+
+    options.AddPolicy("BasicUser1", policy => policy.RequireAssertion(context => context.User.HasClaim(ClaimTypes.Name, "admin")));
+});
+
+//RazorPage Options
+builder.Services.AddRazorPages(options =>
+{
+    //options.Conventions.AuthorizePage("/Shared/_Layout2", "MustBelongToHRDepartment");
+    options.Conventions.AuthorizePage("/contact", "BasicUser");
+    //options.Conventions.AuthorizeFolder("/PagesLoggedIn", "MustBelongToHRDepartment");
+
 });
 
 var app = builder.Build();
@@ -81,8 +108,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapRazorPages();
 

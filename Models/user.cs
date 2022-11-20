@@ -19,7 +19,7 @@ namespace Gaines_Opus_Institute_Current.Models
         [Required(ErrorMessage = "A password is required.")]
         [DataType(DataType.Password)]
         [MinLength(6, ErrorMessage = "Password must be atleast 6 characters")]
-        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{6,}$", ErrorMessage = "Password must be 6 characters long and include a capital, lowercase, special character, and digit.")]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&_-]).{6,}$", ErrorMessage = "Password must be 6 characters long and include a capital, lowercase, special character, and digit.")]
         public string password { get; set; }
 
         [Required(ErrorMessage = "An email is required.")]
