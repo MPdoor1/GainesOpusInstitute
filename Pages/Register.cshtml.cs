@@ -53,6 +53,9 @@ namespace Gaines_Opus_Institute_Current.Pages
                     new Claim("User", "Student")
                     };
 
+                    //Sets the date of register
+                    user.EnrollmentDate = DateTime.Now;
+
                    // var IdeUser = await _userManager.FindByNameAsync(user.username);
                     await _userManager.AddClaimsAsync(IUser, claims);
                     var claimsPrincipal = await _signInManager.CreateUserPrincipalAsync(IUser);
