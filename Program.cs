@@ -88,7 +88,7 @@ builder.Services.AddAuthorization(options =>
 //RazorPage Options
 builder.Services.AddRazorPages(options =>
 {
-    options.Conventions.AuthorizePage("/Shared/_Layout2", "Student");
+    options.Conventions.AuthorizePage("/PagesLoggedIn/index2", "Student");
 });
 
 var app = builder.Build();

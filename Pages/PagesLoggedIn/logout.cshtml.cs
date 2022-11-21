@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Dynamic;
 
 namespace Gaines_Opus_Institute_Current.Pages
 {
@@ -37,5 +38,6 @@ namespace Gaines_Opus_Institute_Current.Pages
             await HttpContext.SignOutAsync("MyCookieAuth");
             return RedirectToPage("/index");
         }
+
     }
 }
