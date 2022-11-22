@@ -29,12 +29,16 @@ namespace Gaines_Opus_Institute_Current.Pages
         [BindProperty]
         public User user { get; set; } = default!;
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            var userRedirect = User != null && User.Identity.IsAuthenticated;
+            if (userRedirect)
+            {
+                return Redirect("/PagesLoggedIn/index2");
+            }
             HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            return Page();
         }
-
         public async Task<IActionResult> OnPostAsync(User user)
         {
 
