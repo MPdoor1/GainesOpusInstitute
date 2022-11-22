@@ -5,8 +5,15 @@ namespace Gaines_Opus_Institute_Current.Pages
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            var userRedirect = User != null && User.Identity.IsAuthenticated;
+            if (userRedirect)
+                {
+                   return Redirect("/PagesLoggedIn/index2");
+                }
+
+            return Page();
         }
     }
 }
