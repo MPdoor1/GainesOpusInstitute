@@ -39,13 +39,15 @@
         </button>
         <div id="navbar-menu" aria-labelledby="navbar-toggle">
             <ul class="navbar-links">
-                
+                 @if(!User.Identity.IsAuthenticated)
+                 {
                 <li class="navbar-item"><a class="navbar-link" asp-page="/Index">Home</a></li>
                 <li class="navbar-item"><a class="navbar-link" asp-page="/PricingUnregistered">Pricing</a></li>
                 <li class="navbar-item"><a class="navbar-link" asp-page="/contact">Contact</a></li>
                 <li class="navbar-item"><a class="navbar-link" href="https://discord.gg/VaCYxyPZxr">Discord</a></li>
                 <li class="navbar-item"><a class="navbar-link" asp-page="/Login">Login</a></li>
-
+                 }
+                   
                    @if(User.Identity.IsAuthenticated)
                     {
 
@@ -54,8 +56,7 @@
                             <button type="Submit" class="navbar-link">Logout</button>
                         </form>
                         </li>
-                                
-
+                        <li class="navbar-item"><a class="navbar-link" asp-page="/PagesLoggedIn/index2">Return</a></li>
                             }
 
                         
