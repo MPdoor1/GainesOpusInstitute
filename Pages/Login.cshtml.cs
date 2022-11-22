@@ -29,6 +29,7 @@ namespace Gaines_Opus_Institute_Current.Pages
         [BindProperty]
         public User user { get; set; } = default!;
 
+        //TESTTEST
         public IActionResult OnGet()
         {
             var userRedirect = User != null && User.Identity.IsAuthenticated;
