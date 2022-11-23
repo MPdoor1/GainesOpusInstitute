@@ -9,27 +9,26 @@
 <body>
     <div id="page-container">
         <header id="navbar">
-            <nav class="navbar-container container">
-
-                <a class="home-link">
-                    <div class="navbar-logo">
-                        <img src="~/css/images/GainesOpusInstitute4.png">
-                    </div>
+            <nav class="navbar-container">
+                <a class="home-link" asp-page="index2">
+                    <img class="navbar-logo-img" src="~/css/images/GainesOpusInstitute4.png">
                 </a>
+                <div id="navbar-menu">
 
-                <div id="navbar-menu" aria-labelledby="navbar-toggle">
-                    <ul class="navbar-links">
-                        <li class="navbar-item"><a class="navbar-link" asp-page="pricing">Pricing</a></li>
-                        <li class="navbar-item-"><a class="navbar-link" href="https://discord.gg/VaCYxyPZxr">Discord</a></li>
-                        <li class="navbar-item">
-                            <a class="navbar-link"> Hello @User.Identity?.Name!</a>
-                        </li>
-                        <li class="navbar-item">
+                        <div class="navbar-item"><a class="navbar-link" asp-page="pricing">Pricing</a></div>
+                        <div class="navbar-item"><a class="navbar-link" href="https://discord.gg/VaCYxyPZxr">Contact</a></div>
+                        <div class="navbar-item"><a class="navbar-link" asp-page="index2">Calendar</a></div>
+                        <div class="navbar-item"><a class="navbar-link" asp-page="info">Info</a></div>
+                        <div class="navbar-item">
+                            <a class="navbar-link" asp-page="profile"> @User.Identity?.Name`s Profile</a>
+                        </div>
+                        <div class="navbar-item"><a class="navbar-link" asp-page="accSetting">Setings</a></div>
+                        <div class="navbar-item">
                             <form method="post" >
-                                <button type="submit" class="navbar-link" id="navbarButton" asp-page="logout" >Logout</button>
+                                <button type="submit" class="navbar-link"  asp-page="logout" >Logout</button>
                             </form>
-                        </li>
-                    </ul>
+                        </div>
+
                 </div>
             </nav>
         </header>

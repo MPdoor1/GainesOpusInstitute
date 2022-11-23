@@ -12,29 +12,25 @@
     --navbar-text-color-focus: #a37f41;
     --navbar-bg-contrast: #a37f41;
     --navbar-height: 100%;
-    --navbar-width: 90px;
+    --navbar-width: 125px;
     --footer-height: 80px;
-    --test-outline: #73AD21;
+    --test-outline: trasparent;
+    /*#73AD21*/
 }
 
 body {
     height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Times New Roman', serif;
     line-height: 1.6;
-    background-color: #FFFFFF;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: var( --color-lightGrey: #f2f2f2);
+    background-color: var( --color-lightGrey);
     outline: 3px solid var(--test-outline);
 }
 
 #page-container {
     position: relative;
     min-height: 100vh;
-    outline: 3px solid var(--test-outline);
-}
-
-#pageContent-wrap {
     outline: 3px solid var(--test-outline);
 }
 
@@ -52,61 +48,63 @@ body {
 }
 
 .navbar-container {
-    display: inline;
-    justify-content: space-between;
-    height: 100%;
+    position: fixed;
+    height: var(--navbar-height);
     width: var(--navbar-width);
-    align-items: center;
+    background-color: var(--navbar-bg-color);
+    left: 0;
+    right: 0;
     outline: 3px solid var(--test-outline);
+    z-index: +10;
 }
 
 .navbar-item {
-    width: 100%;
-    margin-top: 25px;
+    margin-top: 0px;
     outline: 3px solid var(--test-outline);
 }
 
-.home-link,
-.navbar-link {
-    justify-content: center;
-    width: 100%;
-    padding: 0.4em 0.8em;
+.home-link {
+    position: absolute;
     transition-duration: 0.4s;
-    position: relative;
+    width: 125px;
+    height: 125px;
     color: var(--navbar-text-color);
-    text-decoration: none;
-    display: inline;
-    font-weight: 400;
-    align-items: center;
-    background-color: var(--navbar-bg-color);
-    box-shadow: transparent;
-    border: 0px;
-    text-align: center;
-    font-family: 'Times New Roman', serif;
-    font-size: 18px;
     outline: 3px solid var(--test-outline);
 }
-
     .home-link:is(:focus, :hover) {
         color: var(--navbar-text-color-focus);
         outline: 3px solid var(--test-outline);
     }
 
+.navbar-link {
+    position: relative;
+    padding: 0.4em 0.8em;
+    text-decoration: none;
+    color: var(--navbar-text-color);
+    background-color: var(--navbar-bg-color);
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    width: 100%;
+    border: 0px;
+    display: block;
+    transition-duration: 0.4s;
+    outline: 3px solid var(--test-outline);
+    text-align: left;
+}
     .navbar-link:is(:focus, :hover) {
         color: var(--navbar-text-color);
         background-color: var(--navbar-bg-contrast);
         outline: 3px solid var(--test-outline);
     }
 
-.navbar-logo img {
+.navbar-logo-img {
     background-color: var(--navbar-bg-color);
     position: relative;
-    top: 40px;
-    width: 90px;
-    height: 90px;
+    top: -12.5px;
+    width: 125px;
+    height: 125px;
     display: inline;
     max-width: 300%;
-    margin: -50px 0px 0px 0px;
     outline: 3px solid var(--test-outline);
 }
 
@@ -155,9 +153,28 @@ body {
     outline: 3px solid var(--test-outline);
 }
 
-.navbar-links {
+#navbar-toggle {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    outline: 3px solid var(--test-outline);
+}
+
+#navbar-menu {
     position: relative;
-    top: 50px;
+    width: var(--navbar-width);
+    height: var(--navbar-height);
+    top: 100px; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    outline: 3px solid var(--test-outline);
 }
 
 @media screen and (min-width: 700px) {
@@ -173,6 +190,7 @@ body {
     }
 }
 
+ 
 /* Footer css*/
 footer {
     position: relative;
@@ -204,31 +222,3 @@ footer {
             text-decoration: none;
         }
 
-/* User Page css*/
-#userContainer {
-    position: relative;
-    right: -90px;
-    width: 100%;
-    height: auto;
-}
-
-#userBody {
-    height: 100vh;
-    background-color: var(--navbar-text-color);
-    outline: 3px solid var(--test-outline);
-}
-
-/* Calandar */
-
-#calandarContainer {
-    position: relative;
-    top: 100px;
-    left: 200px;
-    height: 400px;
-    width: 800px;
-    outline: 3px solid var(--test-outline);
-}
-
-#calandarDayContainer {
-    position: relative;
-}
