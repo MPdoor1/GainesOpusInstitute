@@ -51,7 +51,7 @@
 #hooking-heading-container {
     position: relative;
     top: -120px;
-    outline: 3px solid var(--test-outline)
+    outline: 3px solid var(--test-outline);
 }
 #hooking-heading {
     width: 50%;
@@ -65,7 +65,7 @@
 #before-button-title-container {
     position: relative;
     top: -170px;
-    outline: 3px solid var(--test-outline)
+    outline: 3px solid var(--test-outline);
 }
 #before-button-title {
     width: 40%;
