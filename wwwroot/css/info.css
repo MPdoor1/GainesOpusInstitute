@@ -40,7 +40,7 @@ body {
 
 /*Section 1*/
 #sectionOne {
-    height: 1000px;
+    height: 200px;
     outline: 3px solid var(--test-outline);
 }
 #S1C1 {
@@ -74,7 +74,7 @@ body {
 
 /*sectionTwo*/
 #sectionTwo {
-    height: 1000px;
+    height: 200px;
     outline: 3px solid var(--test-outline);
 }
 
@@ -115,7 +115,7 @@ body {
 
 /*sectionThree*/
 #sectionThree {
-    height: 1000px;
+    height: 200px;
     outline: 3px solid var(--test-outline);
 }
 
