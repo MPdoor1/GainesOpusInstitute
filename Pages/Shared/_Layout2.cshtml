@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" type="text/css" href="~/css/index2.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/css/info.css" asp-append-version="true">
 </head>
 <body>
     <div id="page-container">
@@ -14,21 +15,19 @@
                     <img class="navbar-logo-img" src="~/css/images/GainesOpusInstitute4.png">
                 </a>
                 <div id="navbar-menu">
-
-                        <div class="navbar-item"><a class="navbar-link" asp-page="pricing">Pricing</a></div>
-                        <div class="navbar-item"><a class="navbar-link" href="https://discord.gg/VaCYxyPZxr">Contact</a></div>
+                        <div class="navbar-item"><a class="navbar-link" asp-page="pricing">Buy Credits</a></div>
                         <div class="navbar-item"><a class="navbar-link" asp-page="index2">Calendar</a></div>
-                        <div class="navbar-item"><a class="navbar-link" asp-page="info">Info</a></div>
                         <div class="navbar-item">
                             <a class="navbar-link" asp-page="profile"> @User.Identity?.Name`s Profile</a>
                         </div>
+                    <div class="navbar-item"><a class="navbar-link" asp-page="info">Info</a></div>
+                    <div class="navbar-item"><a class="navbar-link" href="https://discord.gg/VaCYxyPZxr">Contact</a></div>
                         <div class="navbar-item"><a class="navbar-link" asp-page="accSetting">Setings</a></div>
                         <div class="navbar-item">
                             <form method="post" >
                                 <button type="submit" class="navbar-link"  asp-page="logout" >Logout</button>
                             </form>
                         </div>
-
                 </div>
             </nav>
         </header>

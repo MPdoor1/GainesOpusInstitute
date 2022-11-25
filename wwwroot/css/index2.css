@@ -13,8 +13,7 @@
     --navbar-bg-contrast: #a37f41;
     --navbar-height: 100%;
     --navbar-width: 125px;
-    --footer-height: 80px;
-    --test-outline: trasparent;
+    --test-outline: transparent;
     /*#73AD21*/
 }
 
@@ -38,7 +37,7 @@ body {
 
 #navbar {
     position: fixed;
-    height: var(--navbar-height);
+    height: 100%;
     width: var(--navbar-width);
     background-color: var(--navbar-bg-color);
     left: 0;
@@ -194,8 +193,8 @@ body {
 /* Footer css*/
 footer {
     position: relative;
-    background-color: #474D3D;
-    height: var(--footer-height);
+    background-color: #5d5d5d;
+    height: 50px;
     width: 100%;
     padding-top: 0px;
 }
