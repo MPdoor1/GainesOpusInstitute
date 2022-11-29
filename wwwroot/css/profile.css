@@ -87,3 +87,10 @@ body {
     font-size: 18px;
     outline: 3px solid var(--test-outline);
 }
+
+/*Profile Image*/
+#imgButton{
+    left: 200px;
+    height: 100px; 
+    width: 100px;
+}

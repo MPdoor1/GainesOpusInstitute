@@ -1,4 +1,5 @@
 using Gaines_Opus_Institute_Current.Data;
+using Gaines_Opus_Institute_Current.FileUploadService;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,6 +16,9 @@ var builder = WebApplication.CreateBuilder(args);
 //Database for User
 builder.Services.AddDbContext<GOSContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("GOSContext") ?? throw new InvalidOperationException("Connection string 'GOSContext' not found.")));
+
+//Adding the upload image service
+builder.Services.AddScoped<IFileUploadService, LocalFileUploadService>();
 
 //Registering the Identity Services for User
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(

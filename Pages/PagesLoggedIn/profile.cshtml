@@ -8,7 +8,18 @@
     <h1 id="manageTitle">Manage Your Account</h1>
     <div id="profileContainer">
         <h3 id="profileTitle">Profile Image</h3>
-
+           <div id=pfpForm>
+               <form method="post" enctype="multipart/form-data">
+                   <label id="upImg">Upload Image</label>
+                   <input type="file" name="file"/>
+                   <button type="submit" id="imgButton"></button>
+               </form>
+           </div>
+           <div id="imgDiplay"> 
+               @if(string.IsNullOrWhiteSpace(Model.FilePath)){
+                <img src="@Model.FilePath" alt="Alternate Text" />
+               }
+           </div>
         <h3 id="usernameTitle">Username</h3>
 
         <h3 id="emailTitle">Email</h3>
